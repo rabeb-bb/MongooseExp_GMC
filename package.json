@@ -1,0 +1,24 @@
+{
+  "name": "chkpt_mongoose",
+  "version": "1.0.0",
+  "description": "mongoose and routing",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server"
+  },
+  "keywords": [
+    "mongoose"
+  ],
+  "author": "rabeb",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.8"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.13"
+  }
+}
