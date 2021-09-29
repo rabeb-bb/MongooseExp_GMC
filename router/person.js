@@ -29,6 +29,7 @@ router.post("/", addPeople);
 
 //find by favorite favoriteFoods
 // router.get("/:favoriteFoods", findPersonFood);
+//find with helpers
 router.get("/sorted/:favoriteFoods", findFood);
 
 //update
