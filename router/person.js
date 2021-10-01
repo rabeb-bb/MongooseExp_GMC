@@ -25,7 +25,7 @@ router.post("/", addPeople);
 // router.get("/:name", findPerson);
 
 //find by _id
-// router.get("/:_id", findPersonId);
+router.get("/:id", findPersonId);
 
 //find by favorite favoriteFoods
 // router.get("/:favoriteFoods", findPersonFood);

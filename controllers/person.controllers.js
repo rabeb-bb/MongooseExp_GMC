@@ -60,7 +60,7 @@ exports.findPerson = async (req, res) => {
 exports.findPersonId = async (req, res) => {
   try {
     const { id } = req.params;
-    const findPerson = await Person.findById({ id });
+    const findPerson = await Person.findById(id);
     res.send({ msg: "found the person", findPerson });
     console.log(findPerson);
   } catch (error) {
@@ -87,7 +87,7 @@ exports.findPersonFood = async (req, res) => {
 exports.updateData = async (req, res) => {
   try {
     const { id } = req.params;
-    await Person.updateOne({ _id: id }, { $set: { ...req.body } });
+    await Person.updateOne({ _id: id }, { ...req.body }, { new: true });
     res.send({ msg: "updated succ" });
   } catch (err) {
     res.status(400).send({ msg: "person not updated", err });
@@ -96,8 +96,11 @@ exports.updateData = async (req, res) => {
 exports.findThenUpdate = async (req, res) => {
   try {
     const { name } = req.params;
-    const { age } = req.body;
-    await Person.findOneAndUpdate({ name: name }, { age: age }, { new: true });
+    await Person.findOneAndUpdate(
+      { name: name },
+      { ...req.body },
+      { new: true }
+    );
     res.send({ msg: "updated succ" });
   } catch (error) {
     res.status(400).send({ msg: "person not updated", err });
@@ -107,9 +110,9 @@ exports.findThenUpdate = async (req, res) => {
 //delete by id
 exports.deletePerson = async (req, res) => {
   try {
-    // const { name } = req.params;
-    await Person.deleteOne({ id: req.params.id });
-    res.send({ msg: "person deleted" });
+    const { id } = req.params;
+    const result = await Person.deleteOne({ _id: id });
+    res.send({ msg: "person deleted", result });
   } catch (error) {
     res.status(400).send({ msg: "could not delete", error });
   }
